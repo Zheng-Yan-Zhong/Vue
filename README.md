@@ -96,6 +96,163 @@ const clickFn = (event) => {
 - [Watch]()
 - [Mixin]()
 
+## Setting
+
+```javascript
+//main.js
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+
+Vue.config.productionTip = false;
+
+new Vue({
+	router,
+	store,
+	render: (vue) => vue(App),
+}).$mount('#app');
+```
+
+---
+
+## Data
+
+在 Vue2 中我們會使用 Data( ) 來回傳所定義的資料
+
+```html
+//HomeView.vue
+<template>
+	<div class="home">
+		<p>{{ msg }}</p>
+		<button @click="msg++">increase</button>
+		<button @click="msg--">decrease</button>
+	</div>
+</template>
+```
+
+```javascript
+<script>
+export default {
+  name: 'HomeView',
+  data() {
+    return {
+      msg: 0,
+    };
+  },
+};
+</script>
+```
+
+---
+
+## Methods
+
+在 methods 物件中定義使用的 function
+
+```javascript
+import HelloWorld from '../components/HelloWorld.vue';
+export default {
+	name: 'HomeView',
+	components: {
+		Hello: HelloWorld,
+	},
+	data() {
+		return {
+			msg: 0,
+		};
+	},
+	methods: {
+		increase() {
+			this.msg++;
+		},
+	},
+};
+```
+
+```html
+<template>
+	<div class="home">
+		<p>{{ msg }}</p>
+		<button @click="increase()">increase</button>
+		<button @click="msg--">decrease</button>
+		<Hello />
+	</div>
+</template>
+```
+
+---
+
+## Prop
+
+---
+
+## Component
+
+欲使用組件時,需先引入組件,並且使用 components 註冊
+
+```javascript
+import HelloWorld from '@/components/HelloWorld.vue';
+export default {
+	name: 'HomeView',
+	components: {
+		HelloWorld,
+	},
+	data() {
+		return {
+			msg: 'hello',
+		};
+	},
+};
+```
+
+```html
+<template>
+	<div class="home">
+		<img alt="Vue logo" src="../assets/logo.png" />
+		<HelloWorld msg="Welcome to Your Vue.js App" />
+		<p>{{ msg }}</p>
+	</div>
+</template>
+```
+
+當然我們也可以為引入之組件更改名字
+
+```javascript
+export default {
+	name: 'HomeView',
+	components: {
+		Hello: HelloWorld,
+	},
+	data() {
+		return {
+			msg: 0,
+		};
+	},
+};
+```
+
+```html
+<div class="home">
+	<p>{{ msg }}</p>
+	<button @click="msg++">increase</button>
+	<button @click="msg--">decrease</button>
+	<Hello />
+</div>
+```
+
+---
+
+## Global component
+
+---
+
+## Watch
+
+---
+
+## Mixin
+
 ---
 
 ## Composition API
@@ -118,7 +275,6 @@ const clickFn = (event) => {
 ```html
 <script>
 	import { ref } from 'vue';
-
 	export default {
 		setup() {
 			const count = ref(0);
@@ -210,7 +366,7 @@ const textFn = () => {
   - array
   - object
 
-```vue
+```html
 <h3>{{text.value}}</h3>
 ```
 
@@ -220,10 +376,10 @@ const textFn = () => {
 
 - 唯讀
 
-```javascript=
-const copyText = readonly(text)
-copyText.value = 1000
-console.log(copyText)
+```javascript
+const copyText = readonly(text);
+copyText.value = 1000;
+console.log(copyText);
 ```
 
 ![](./image/vue.readonly.png)
@@ -346,10 +502,8 @@ or
 
 - 需要頻繁操作的元素可使用 v-show
 
-```vue
-<li v-show="bool">
-  {{array}}
-  </li>
+```html
+<li v-show="bool">{{array}}</li>
 ```
 
 ![](./gif/vue.v-show.gif)
@@ -388,16 +542,16 @@ or
 
 - `v-on` or `@`
 - modifiers
-  - .stop - call event.stopPropagation().
-  - .prevent - call event.preventDefault().
-  - .capture - add event listener in capture mode.
-  - .self - only trigger handler if event was dispatched \* .from this element.
-  - .{keyAlias} - only trigger handler on certain keys.
-  - .once - trigger handler at most once.
-  - .left - only trigger handler for left button mouse events.
-  - .right - only trigger handler for right button mouse events.
-  - .middle - only trigger handler for middle button mouse events.
-  - .passive - attaches a DOM event with { passive: true }.
+  - `.stop` - call event.stopPropagation().
+  - `.prevent` - call event.preventDefault().
+  - `.capture` - add event listener in capture mode.
+  - `.self` - only trigger handler if event was dispatched \* .from this element.
+  - `.{keyAlias}` - only trigger handler on certain keys.
+  - `.once` - trigger handler at most once.
+  - `.left` - only trigger handler for left button mouse events.
+  - `.right` - only trigger handler for right button mouse events.
+  - `.middle` - only trigger handler for middle button mouse events.
+  - .`passive` - attaches a DOM event with { passive: true }.
 
 ```html
 <template>
@@ -414,7 +568,7 @@ or
 
 - Vue 已經幫我們做好監聽的部分,只要綁定好資料即可
 
-```vue
+```html
 <input type="text" v-model="text">
 <h3>{{text}}</h3>
 </template>
@@ -430,7 +584,7 @@ or
 
 ## Watch
 
-- wathc(callback => listenProp, callback, {deep: true or false})
+- watch(callback => listenProp, callback, {deep: true or false})
 - 第三個參數預設為 false
 
 這樣為錯誤示範
@@ -482,7 +636,7 @@ watch(
 
 or
 
-```vue
+```html
 <div :class="[{ activeClass: isActive }, errorClass]"></div>
 ```
 
@@ -550,16 +704,16 @@ setup() {
 - 操作 display `v-show`
 - 組件切換等等
 
-```vue
+```html
 <Transition>
-      <div v-show="isOpen" class="extend" @click="clickFn()">
-        <ul class="extend-ul">
-          <li class="extend-li"><router-link to="/">Home</router-link></li>
-          <li class="extend-li"><router-link to="/">MRT</router-link></li>
-          <li class="extend-li"><router-link to="/">T-power</router-link></li>
-        </ul>
-      </div>
-    </Transition>
+	<div v-show="isOpen" class="extend" @click="clickFn()">
+		<ul class="extend-ul">
+			<li class="extend-li"><router-link to="/">Home</router-link></li>
+			<li class="extend-li"><router-link to="/">MRT</router-link></li>
+			<li class="extend-li"><router-link to="/">T-power</router-link></li>
+		</ul>
+	</div>
+</Transition>
 ```
 
 ![](./gif/vue-transition.gif)
@@ -846,15 +1000,15 @@ Don't forget to bind the property with ":" (we forget all the time!)
 
 ![](./image/fontAwesome.png)
 
-```javascript=
+```javascript
 //main.js
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faUserSecret);
 createApp(App)
-  .component('font-awesome-icon', FontAwesomeIcon)
-  .use(router)
-  .mount('#app');
+	.component('font-awesome-icon', FontAwesomeIcon)
+	.use(router)
+	.mount('#app');
 ```
 
 ## Configuration
