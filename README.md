@@ -66,8 +66,8 @@ vue create . //創建在當前目錄下
 
 ```javascript
 const clickFn = (event) => {
-	data.value++;
-	event.preventDefault();
+  data.value++;
+  event.preventDefault();
 };
 ```
 
@@ -108,9 +108,9 @@ import store from './store';
 Vue.config.productionTip = false;
 
 new Vue({
-	router,
-	store,
-	render: (vue) => vue(App),
+  router,
+  store,
+  render: (vue) => vue(App),
 }).$mount('#app');
 ```
 
@@ -123,23 +123,23 @@ new Vue({
 ```html
 //HomeView.vue
 <template>
-	<div class="home">
-		<p>{{ msg }}</p>
-		<button @click="msg++">increase</button>
-		<button @click="msg--">decrease</button>
-	</div>
+  <div class="home">
+    <p>{{ msg }}</p>
+    <button @click="msg++">increase</button>
+    <button @click="msg--">decrease</button>
+  </div>
 </template>
 ```
 
 ```javascript
 <script>
 export default {
-  name: 'HomeView',
-  data() {
-    return {
-      msg: 0,
-    };
-  },
+name: 'HomeView',
+data() {
+	return {
+		msg: 0,
+	};
+},
 };
 </script>
 ```
@@ -153,31 +153,31 @@ export default {
 ```javascript
 import HelloWorld from '../components/HelloWorld.vue';
 export default {
-	name: 'HomeView',
-	components: {
-		Hello: HelloWorld,
-	},
-	data() {
-		return {
-			msg: 0,
-		};
-	},
-	methods: {
-		increase() {
-			this.msg++;
-		},
-	},
+  name: 'HomeView',
+  components: {
+    Hello: HelloWorld,
+  },
+  data() {
+    return {
+      msg: 0,
+    };
+  },
+  methods: {
+    increase() {
+      this.msg++;
+    },
+  },
 };
 ```
 
 ```html
 <template>
-	<div class="home">
-		<p>{{ msg }}</p>
-		<button @click="increase()">increase</button>
-		<button @click="msg--">decrease</button>
-		<Hello />
-	</div>
+  <div class="home">
+    <p>{{ msg }}</p>
+    <button @click="increase()">increase</button>
+    <button @click="msg--">decrease</button>
+    <Hello />
+  </div>
 </template>
 ```
 
@@ -194,25 +194,25 @@ export default {
 ```javascript
 import HelloWorld from '@/components/HelloWorld.vue';
 export default {
-	name: 'HomeView',
-	components: {
-		HelloWorld,
-	},
-	data() {
-		return {
-			msg: 'hello',
-		};
-	},
+  name: 'HomeView',
+  components: {
+    HelloWorld,
+  },
+  data() {
+    return {
+      msg: 'hello',
+    };
+  },
 };
 ```
 
 ```html
 <template>
-	<div class="home">
-		<img alt="Vue logo" src="../assets/logo.png" />
-		<HelloWorld msg="Welcome to Your Vue.js App" />
-		<p>{{ msg }}</p>
-	</div>
+  <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png" />
+    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <p>{{ msg }}</p>
+  </div>
 </template>
 ```
 
@@ -220,24 +220,24 @@ export default {
 
 ```javascript
 export default {
-	name: 'HomeView',
-	components: {
-		Hello: HelloWorld,
-	},
-	data() {
-		return {
-			msg: 0,
-		};
-	},
+  name: 'HomeView',
+  components: {
+    Hello: HelloWorld,
+  },
+  data() {
+    return {
+      msg: 0,
+    };
+  },
 };
 ```
 
 ```html
 <div class="home">
-	<p>{{ msg }}</p>
-	<button @click="msg++">increase</button>
-	<button @click="msg--">decrease</button>
-	<Hello />
+  <p>{{ msg }}</p>
+  <button @click="msg++">increase</button>
+  <button @click="msg--">decrease</button>
+  <Hello />
 </div>
 ```
 
@@ -259,33 +259,33 @@ export default {
 
 ```javascript
 export default {
-	watch: {
-		value: function () {
-			console.log(this.value);
-		},
-	},
-	data() {
-		return {
-			value: '',
-		};
-	},
+  watch: {
+    value: function () {
+      console.log(this.value);
+    },
+  },
+  data() {
+    return {
+      value: '',
+    };
+  },
 };
 ```
 
 ```javascript
 export default {
-	watch: {
-		value: {
-			handler() {
-				console.log(this.value);
-			},
-		},
-	},
-	data() {
-		return {
-			value: '',
-		};
-	},
+  watch: {
+    value: {
+      handler() {
+        console.log(this.value);
+      },
+    },
+  },
+  data() {
+    return {
+      value: '',
+    };
+  },
 };
 ```
 
@@ -298,25 +298,25 @@ export default {
 ```javascript
 <script>
 export default {
-	// watch: {
-	// 	value: function () {
-	// 		console.log(this.value);
-	// 	},
-	watch: {
-		value: {
-			handler() {
-				console.log(this.value.date);
-			},
-			deep: true,
+// watch: {
+// 	value: function () {
+// 		console.log(this.value);
+// 	},
+watch: {
+	value: {
+		handler() {
+			console.log(this.value.date);
 		},
+		deep: true,
 	},
-	data() {
-		return {
-			value: {
-				date: '2022',
-			},
-		};
-	},
+},
+data() {
+	return {
+		value: {
+			date: '2022',
+		},
+	};
+},
 };
 </script>
 ```
@@ -330,26 +330,26 @@ export default {
 ```javascript
 <script>
 export default {
-	// watch: {
-	// 	value: function () {
-	// 		console.log(this.value);
-	// 	},
-	watch: {
-		value: {
-			handler() {
-				console.log(this.value.date);
-			},
-			deep: true,
-			immediate: true
+// watch: {
+// 	value: function () {
+// 		console.log(this.value);
+// 	},
+watch: {
+	value: {
+		handler() {
+			console.log(this.value.date);
 		},
+		deep: true,
+		immediate: true
 	},
-	data() {
-		return {
-			value: {
-				date: '2022',
-			},
-		};
-	},
+},
+data() {
+	return {
+		value: {
+			date: '2022',
+		},
+	};
+},
 };
 </script>
 ```
@@ -379,24 +379,24 @@ export default {
 
 ```html
 <script>
-	import { ref } from 'vue';
-	export default {
-		setup() {
-			const count = ref(0);
+  import { ref } from 'vue';
+  export default {
+    setup() {
+      const count = ref(0);
 
-			return {
-				count,
-			};
-		},
+      return {
+        count,
+      };
+    },
 
-		mounted() {
-			console.log(this.count); // 0
-		},
-	};
+    mounted() {
+      console.log(this.count); // 0
+    },
+  };
 </script>
 
 <template>
-	<button @click="count++">{{ count }}</button>
+  <button @click="count++">{{ count }}</button>
 </template>
 ```
 
@@ -417,14 +417,14 @@ export default {
 
 ```html
 <script setup>
-	import { ref, defineProps } from 'vue';
-	defineProps({
-		name: String,
-	});
-	const age = ref(23);
-	const sayHi = () => {
-		console.log('hello');
-	};
+  import { ref, defineProps } from 'vue';
+  defineProps({
+    name: String,
+  });
+  const age = ref(23);
+  const sayHi = () => {
+    console.log('hello');
+  };
 </script>
 ```
 
@@ -437,10 +437,10 @@ export default {
 ```javascript
 const data = ref(0);
 const clickFn = () => {
-	data.value++;
-	nextTick(() => {
-		console.log('hello');
-	});
+  data.value++;
+  nextTick(() => {
+    console.log('hello');
+  });
 };
 ```
 
@@ -450,9 +450,9 @@ const clickFn = () => {
 
 - template 中自動展開屬性
 - 偏向單純數據資料
-  - boolean
-  - number
-  - string..
+- boolean
+- number
+- string..
 
 ![](./image/vue.ref.png)
 
@@ -460,7 +460,7 @@ const clickFn = () => {
 
 ```javascript
 const textFn = () => {
-	text.value = 'Goodbye';
+  text.value = 'Goodbye';
 };
 ```
 
@@ -468,8 +468,8 @@ const textFn = () => {
 
 - template 中則需要定義到屬性
 - 偏向較複雜數據
-  - array
-  - object
+- array
+- object
 
 ```html
 <h3>{{text.value}}</h3>
@@ -500,30 +500,30 @@ import { ref } from 'vue';
 import Child from './Child.vue';
 const user = ref('Dennis');
 const sayHi = () => {
-	console.log('hello');
+console.log('hello');
 };
 </script>
 
 <template>
-	<h1>Root</h1>
-	<button @click="sayHi">sayHi</button>
-	<Child :name="user" />
+<h1>Root</h1>
+<button @click="sayHi">sayHi</button>
+<Child :name="user" />
 </template>
 ```
 
 ```html
 //Child.vue
 <template>
-	<div>
-		<h3>{{ name }}</h3>
-	</div>
+  <div>
+    <h3>{{ name }}</h3>
+  </div>
 </template>
 
 <script setup>
-	import { defineProps } from 'vue';
-	defineProps({
-		name: String,
-	});
+  import { defineProps } from 'vue';
+  defineProps({
+    name: String,
+  });
 </script>
 ```
 
@@ -549,9 +549,9 @@ const sayHi = () => {
 
 ```html
 <ul>
-	<li v-for="(item, index) in array" key="item.toString()">
-		{{index+1}}. {{item}}
-	</li>
+  <li v-for="(item, index) in array" key="item.toString()">
+    {{index+1}}. {{item}}
+  </li>
 </ul>
 ```
 
@@ -559,9 +559,9 @@ const sayHi = () => {
 
 ```html
 <ul>
-	<li v-for="(item, index) in array" v-bind:key="item.toString()">
-		{{index+1}}. {{item}}
-	</li>
+  <li v-for="(item, index) in array" v-bind:key="item.toString()">
+    {{index+1}}. {{item}}
+  </li>
 </ul>
 ```
 
@@ -569,9 +569,9 @@ or
 
 ```html
 <ul>
-	<li v-for="(item, index) in array" :key="item.toString()">
-		{{index+1}}. {{item}}
-	</li>
+  <li v-for="(item, index) in array" :key="item.toString()">
+    {{index+1}}. {{item}}
+  </li>
 </ul>
 ```
 
@@ -585,17 +585,17 @@ or
 
 ```html
 <script setup>
-	import { ref, reactive } from 'vue';
-	import Child from './Child.vue';
-	const array = reactive(['JS', 'CSS', 'HTML']);
-	const bool = ref(true);
+  import { ref, reactive } from 'vue';
+  import Child from './Child.vue';
+  const array = reactive(['JS', 'CSS', 'HTML']);
+  const bool = ref(true);
 </script>
 
 <template>
-	<h1>Root</h1>
-	<Child name="Dennis" />
+  <h1>Root</h1>
+  <Child name="Dennis" />
 
-	<li v-if="bool">{{ array }}</li>
+  <li v-if="bool">{{ array }}</li>
 </template>
 ```
 
@@ -625,19 +625,19 @@ or
 
 ```html
 <script setup>
-	import { ref, reactive } from 'vue';
-	import Child from './Child.vue';
-	const array = reactive(['JS', 'CSS', 'HTML']);
+  import { ref, reactive } from 'vue';
+  import Child from './Child.vue';
+  const array = reactive(['JS', 'CSS', 'HTML']);
 </script>
 
 <template>
-	<h1>Root</h1>
-	<Child name="Dennis" />
-	<ul>
-		<li v-for="(item, index) in array" :key="item.toString()">
-			{{ index + 1 }}. {{ item }}
-		</li>
-	</ul>
+  <h1>Root</h1>
+  <Child name="Dennis" />
+  <ul>
+    <li v-for="(item, index) in array" :key="item.toString()">
+      {{ index + 1 }}. {{ item }}
+    </li>
+  </ul>
 </template>
 ```
 
@@ -647,23 +647,23 @@ or
 
 - `v-on` or `@`
 - modifiers
-  - `.stop` - call event.stopPropagation().
-  - `.prevent` - call event.preventDefault().
-  - `.capture` - add event listener in capture mode.
-  - `.self` - only trigger handler if event was dispatched \* .from this element.
-  - `.{keyAlias}` - only trigger handler on certain keys.
-  - `.once` - trigger handler at most once.
-  - `.left` - only trigger handler for left button mouse events.
-  - `.right` - only trigger handler for right button mouse events.
-  - `.middle` - only trigger handler for middle button mouse events.
-  - .`passive` - attaches a DOM event with { passive: true }.
+- `.stop` - call event.stopPropagation().
+- `.prevent` - call event.preventDefault().
+- `.capture` - add event listener in capture mode.
+- `.self` - only trigger handler if event was dispatched \* .from this element.
+- `.{keyAlias}` - only trigger handler on certain keys.
+- `.once` - trigger handler at most once.
+- `.left` - only trigger handler for left button mouse events.
+- `.right` - only trigger handler for right button mouse events.
+- `.middle` - only trigger handler for middle button mouse events.
+- .`passive` - attaches a DOM event with { passive: true }.
 
 ```html
 <template>
-	<h1>Root</h1>
-	<Child name="Dennis" />
-	<button @click="clickFn()">say Hi</button>
-	<h3 v-show="data">Hello</h3>
+  <h1>Root</h1>
+  <Child name="Dennis" />
+  <button @click="clickFn()">say Hi</button>
+  <h3 v-show="data">Hello</h3>
 </template>
 ```
 
@@ -696,11 +696,11 @@ or
 
 ```javascript
 watch(
-	text,
-	(newIdx, oldIndex) => {
-		console.log(newIdx, oldIndex);
-	},
-	{ deep: true }
+  text,
+  (newIdx, oldIndex) => {
+    console.log(newIdx, oldIndex);
+  },
+  { deep: true }
 );
 ```
 
@@ -708,11 +708,11 @@ watch(
 
 ```javascript
 watch(
-	() => text,
-	(newIdx, oldIndex) => {
-		console.log(newIdx, oldIndex);
-	},
-	{ deep: true }
+  () => text,
+  (newIdx, oldIndex) => {
+    console.log(newIdx, oldIndex);
+  },
+  { deep: true }
 );
 ```
 
@@ -753,8 +753,8 @@ or
 
 ```html
 <nav
-	class="navbar navbar-expand-lg"
-	:class="[bgc === 'black' ? 'nav-black' : 'nav-light']"
+  class="navbar navbar-expand-lg"
+  :class="[bgc === 'black' ? 'nav-black' : 'nav-light']"
 ></nav>
 ```
 
@@ -777,20 +777,20 @@ or
 
 ```javascript
 setup() {
-    const data = ref(0);
-    onMounted(() => {
-      console.log('onMounted');
-    });
-    onBeforeMount(() => {
-      console.log('start');
-    });
-    onUpdated(() => {
-      console.log(data.value);
-    });
-    return {
-      data,
-    };
-  },
+	const data = ref(0);
+	onMounted(() => {
+		console.log('onMounted');
+	});
+	onBeforeMount(() => {
+		console.log('start');
+	});
+	onUpdated(() => {
+		console.log(data.value);
+	});
+	return {
+		data,
+	};
+},
 ```
 
 ![](./gif/vue.lifeCycle.gif)
@@ -811,13 +811,13 @@ setup() {
 
 ```html
 <Transition>
-	<div v-show="isOpen" class="extend" @click="clickFn()">
-		<ul class="extend-ul">
-			<li class="extend-li"><router-link to="/">Home</router-link></li>
-			<li class="extend-li"><router-link to="/">MRT</router-link></li>
-			<li class="extend-li"><router-link to="/">T-power</router-link></li>
-		</ul>
-	</div>
+  <div v-show="isOpen" class="extend" @click="clickFn()">
+    <ul class="extend-ul">
+      <li class="extend-li"><router-link to="/">Home</router-link></li>
+      <li class="extend-li"><router-link to="/">MRT</router-link></li>
+      <li class="extend-li"><router-link to="/">T-power</router-link></li>
+    </ul>
+  </div>
 </Transition>
 ```
 
@@ -828,12 +828,12 @@ setup() {
 ```css
 .v-enter-active,
 .v-leave-active {
-	transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
-	opacity: 0;
+  opacity: 0;
 }
 ```
 
@@ -854,22 +854,22 @@ import Homepage from '../views/Homepage.vue';
 import Login from '../views/Login.vue';
 import Register from '../components/Register.vue';
 const routes = [
-	{
-		path: '/',
-		component: Homepage,
-	},
-	{
-		path: '/login',
-		component: Login,
-	},
-	{
-		path: '/register',
-		component: Register,
-	},
+  {
+    path: '/',
+    component: Homepage,
+  },
+  {
+    path: '/login',
+    component: Login,
+  },
+  {
+    path: '/register',
+    component: Register,
+  },
 ];
 const router = createRouter({
-	history: createWebHashHistory(),
-	routes,
+  history: createWebHashHistory(),
+  routes,
 });
 
 export default router;
@@ -887,24 +887,24 @@ createApp(App).use(store).use(router).mount('#app');
 
 ```javascript
 const routes = [
-	{
-		path: '/user/:id',
-		component: User,
-		children: [
-			{
-				// UserProfile will be rendered inside User's <router-view>
-				// when /user/:id/profile is matched
-				path: 'profile',
-				component: UserProfile,
-			},
-			{
-				// UserPosts will be rendered inside User's <router-view>
-				// when /user/:id/posts is matched
-				path: 'posts',
-				component: UserPosts,
-			},
-		],
-	},
+  {
+    path: '/user/:id',
+    component: User,
+    children: [
+      {
+        // UserProfile will be rendered inside User's <router-view>
+        // when /user/:id/profile is matched
+        path: 'profile',
+        component: UserProfile,
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'posts',
+        component: UserPosts,
+      },
+    ],
+  },
 ];
 ```
 
@@ -921,8 +921,8 @@ const routes = [
 const UserDetails = () => import('./views/UserDetails');
 
 const router = createRouter({
-	// ...
-	routes: [{ path: '/users/:id', component: UserDetails }],
+  // ...
+  routes: [{ path: '/users/:id', component: UserDetails }],
 });
 ```
 
@@ -931,24 +931,24 @@ const router = createRouter({
 [catch404](https://router.vuejs.org/guide/essentials/dynamic-matching.html#catch-all-404-not-found-route)
 
 ```javascript
-  {
-    path: '/:pathMatch(.*)*',
-    component: NotFound,
-  },
+{
+	path: '/:pathMatch(.*)*',
+	component: NotFound,
+},
 ```
 
 ### `Loading page`
 
 ```javascript
 function loginFn() {
-	//先切入loading path
-	router.push('/loading');
-	//非同步完成後切入首頁
-	fetch('https://e-shop-tw.herokuapp.com/')
-		.then((res) => res.json())
-		.then((data) => console.log(data))
-		.then(() => router.push('/'))
-		.catch((err) => console.log(err));
+  //先切入loading path
+  router.push('/loading');
+  //非同步完成後切入首頁
+  fetch('https://e-shop-tw.herokuapp.com/')
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .then(() => router.push('/'))
+    .catch((err) => console.log(err));
 }
 ```
 
@@ -985,17 +985,17 @@ createApp(App).use(createPinia()).use(router).mount('#app');
 import { defineStore } from 'pinia';
 
 export const useStore = defineStore('theme', {
-	state: () => {
-		return {
-			bgc: 'white',
-			color: 'grey',
-		};
-	},
-	actions: {
-		darkMode() {
-			(this.bgc = 'black'), (this.color = 'white');
-		},
-	},
+  state: () => {
+    return {
+      bgc: 'white',
+      color: 'grey',
+    };
+  },
+  actions: {
+    darkMode() {
+      (this.bgc = 'black'), (this.color = 'white');
+    },
+  },
 });
 ```
 
@@ -1019,10 +1019,10 @@ const { darkMode } = store;
 
 ```html
 <template>
-	<nav />
-	<h3>{{ bgc }}</h3>
-	<h3>{{ color }}</h3>
-	<router-view></router-view>
+  <nav />
+  <h3>{{ bgc }}</h3>
+  <h3>{{ color }}</h3>
+  <router-view></router-view>
 </template>
 ```
 
@@ -1034,23 +1034,23 @@ import { mande } from 'mande';
 const api = mande('/api/users');
 
 export const useUsers = defineStore('users', {
-	state: () => ({
-		userData: null,
-		// ...
-	}),
+  state: () => ({
+    userData: null,
+    // ...
+  }),
 
-	actions: {
-		async registerUser(login, password) {
-			try {
-				this.userData = await api.post({ login, password });
-				showTooltip(`Welcome back ${this.userData.name}!`);
-			} catch (error) {
-				showTooltip(error);
-				// let the form component display the error
-				return error;
-			}
-		},
-	},
+  actions: {
+    async registerUser(login, password) {
+      try {
+        this.userData = await api.post({ login, password });
+        showTooltip(`Welcome back ${this.userData.name}!`);
+      } catch (error) {
+        showTooltip(error);
+        // let the form component display the error
+        return error;
+      }
+    },
+  },
 });
 ```
 
@@ -1111,9 +1111,9 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faUserSecret);
 createApp(App)
-	.component('font-awesome-icon', FontAwesomeIcon)
-	.use(router)
-	.mount('#app');
+  .component('font-awesome-icon', FontAwesomeIcon)
+  .use(router)
+  .mount('#app');
 ```
 
 ## `Configuration`
@@ -1130,8 +1130,8 @@ productionSourceMap: false,
 //vue.config.js
 const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
-	transpileDependencies: true,
-	productionSourceMap: false,
+  transpileDependencies: true,
+  productionSourceMap: false,
 });
 ```
 
