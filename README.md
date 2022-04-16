@@ -6,12 +6,12 @@ Vue 跟 React 等相關框架都是資料決定畫面,有別於 MVC(Model View C
 
 [Fake server](https://e-shop-tw.herokuapp.com/)
 
-## Table of Contents
+## `Table of Contents`
 
 - [CLI (command line interface)](#CLI)
 - [Events](#Events)
-- [Option API](#Option-API)
-- [Composition API](#Composition-API)
+- [Option API (Vue2)](#Option-API)
+- [Composition API (Vue3)](#Composition-API)
 - [Lifecycle](#Lifecycle)
 - [Slot](#slot)
 - [Transition](#Transition)
@@ -23,7 +23,7 @@ Vue 跟 React 等相關框架都是資料決定畫面,有別於 MVC(Model View C
 
 ---
 
-## CLI
+## `CLI`
 
 由於 Vue 的主要作者開始推崇從 Vue-cli 轉移到 Vite,想當然我們使用的用戶也要與時俱進的學習.
 
@@ -47,7 +47,7 @@ vue create . //創建在當前目錄下
 
 ---
 
-## Events
+## `Events`
 
 [Vue modifiers](https://vuejs.org/guide/essentials/event-handling.html#event-modifiers)
 
@@ -85,7 +85,7 @@ const clickFn = (event) => {
 
 ---
 
-## Option API
+## `Option API`
 
 - [Setting]()
 - [Data]()
@@ -96,7 +96,7 @@ const clickFn = (event) => {
 - [Watch]()
 - [Mixin]()
 
-## Setting
+## `Setting`
 
 ```javascript
 //main.js
@@ -116,7 +116,7 @@ new Vue({
 
 ---
 
-## Data
+## `Data`
 
 在 Vue2 中我們會使用 Data( ) 來回傳所定義的資料
 
@@ -146,7 +146,7 @@ export default {
 
 ---
 
-## Methods
+## `Methods`
 
 在 methods 物件中定義使用的 function
 
@@ -183,11 +183,11 @@ export default {
 
 ---
 
-## Prop
+## `Prop`
 
 ---
 
-## Component
+## `Component`
 
 欲使用組件時,需先引入組件,並且使用 components 註冊
 
@@ -243,19 +243,124 @@ export default {
 
 ---
 
-## Global component
+## `Global component`
 
 ---
 
-## Watch
+## `Watch`
+
+[Vue2 watch docs](https://vuejs.org/guide/essentials/watchers.html)
+
+`value` : `callBack function`
+`value` : `{ handler()}`
+
+- [deep](#deep)
+- [immediate](#immediate)
+
+```javascript
+export default {
+	watch: {
+		value: function () {
+			console.log(this.value);
+		},
+	},
+	data() {
+		return {
+			value: '',
+		};
+	},
+};
+```
+
+```javascript
+export default {
+	watch: {
+		value: {
+			handler() {
+				console.log(this.value);
+			},
+		},
+	},
+	data() {
+		return {
+			value: '',
+		};
+	},
+};
+```
 
 ---
 
-## Mixin
+### `Deep`
+
+由於 watch 是 shallow watch,所以物件中的資料更動也無法察覺,透過 deep 我們可以辨識物件中的屬性(也就是觀察記憶體位置)
+
+```javascript
+<script>
+export default {
+	// watch: {
+	// 	value: function () {
+	// 		console.log(this.value);
+	// 	},
+	watch: {
+		value: {
+			handler() {
+				console.log(this.value.date);
+			},
+			deep: true,
+		},
+	},
+	data() {
+		return {
+			value: {
+				date: '2022',
+			},
+		};
+	},
+};
+</script>
+```
 
 ---
 
-## Composition API
+### `Immediate`
+
+無論如何立即回調
+
+```javascript
+<script>
+export default {
+	// watch: {
+	// 	value: function () {
+	// 		console.log(this.value);
+	// 	},
+	watch: {
+		value: {
+			handler() {
+				console.log(this.value.date);
+			},
+			deep: true,
+			immediate: true
+		},
+	},
+	data() {
+		return {
+			value: {
+				date: '2022',
+			},
+		};
+	},
+};
+</script>
+```
+
+---
+
+## `Mixin`
+
+---
+
+## `Composition API`
 
 - [setup()](#setup)
 - [nextTick(()](#NextTick)
@@ -301,7 +406,7 @@ export default {
 
 ---
 
-## setup
+## `setup`
 
 [script setup](https://vuejs.org/api/sfc-script-setup.html)
 
@@ -325,7 +430,7 @@ export default {
 
 ---
 
-## nextTick
+## `nextTick`
 
 由於 DOM 更新並不是同步的,使用 nextTick function 可以確保更新後再操作更新後的 DOM．
 
@@ -341,7 +446,7 @@ const clickFn = () => {
 
 ---
 
-## Ref
+## `Ref`
 
 - template 中自動展開屬性
 - 偏向單純數據資料
@@ -359,7 +464,7 @@ const textFn = () => {
 };
 ```
 
-## Reactive
+## `Reactive`
 
 - template 中則需要定義到屬性
 - 偏向較複雜數據
@@ -372,7 +477,7 @@ const textFn = () => {
 
 ![](./image/vue.reactive.png)
 
-## Readonly
+## `Readonly`
 
 - 唯讀
 
@@ -386,7 +491,7 @@ console.log(copyText);
 
 ---
 
-## DefineProps
+## `DefineProps`
 
 ```javascript
 //App.vue
@@ -424,7 +529,7 @@ const sayHi = () => {
 
 ---
 
-## Directives
+## `Directives`
 
 - [v-bind](#v-bind)
 - [v-if](#v-if)
@@ -434,7 +539,7 @@ const sayHi = () => {
 - [v-model](#v-model)
 - [v-memo](#v-memo)
 
-### v-bind
+### `v-bind`
 
 ---
 
@@ -472,7 +577,7 @@ or
 
 ---
 
-### v-if
+### `v-if`
 
 - 通常與 v-else 搭配
 - 不可與 v-for 同時使用
@@ -498,7 +603,7 @@ or
 
 ---
 
-### v-show
+### `v-show`
 
 - 需要頻繁操作的元素可使用 v-show
 
@@ -512,7 +617,7 @@ or
 
 ---
 
-## v-for
+## `v-for`
 
 - 給予 key 值
 
@@ -538,7 +643,7 @@ or
 
 ---
 
-### v-on
+### `v-on`
 
 - `v-on` or `@`
 - modifiers
@@ -564,7 +669,7 @@ or
 
 ---
 
-## v-model
+## `v-model`
 
 - Vue 已經幫我們做好監聽的部分,只要綁定好資料即可
 
@@ -578,11 +683,11 @@ or
 
 [Back to Contents](#Table-of-Contents)
 
-## Computed
+## `Computed`
 
 ---
 
-## Watch
+## `Watch`
 
 - watch(callback => listenProp, callback, {deep: true or false})
 - 第三個參數預設為 false
@@ -613,7 +718,7 @@ watch(
 
 ---
 
-## WatchEffect
+## `WatchEffect`
 
 - callback 中調用到的值,會立即監聽,而 watch 則需要明確的監控該值
 - 適用於用戶每次傳送資料的正確性
@@ -622,7 +727,7 @@ watch(
 
 ---
 
-## Class binding
+## `Class binding`
 
 [class bind docs](https://vuejs.org/guide/essentials/class-and-style.html)
 
@@ -659,7 +764,7 @@ or
 
 ---
 
-## Lifecycle
+## `Lifecycle`
 
 - onUnmounted
 - onMounted
@@ -732,7 +837,7 @@ setup() {
 }
 ```
 
-## Router
+## `Router`
 
 - [Setting](#Setting)
 - [Nested routes](#Nested-route)
@@ -740,7 +845,7 @@ setup() {
 - [Catch 404](#Catch-404)
 - [Loading-page](#Loading-page)
 
-### Setting
+### `Setting`
 
 ```javascript
 //router/index.js
@@ -778,7 +883,7 @@ import router from './router';
 createApp(App).use(store).use(router).mount('#app');
 ```
 
-### Nested routes
+### `Nested routes`
 
 ```javascript
 const routes = [
@@ -803,7 +908,7 @@ const routes = [
 ];
 ```
 
-### Page lazy loading
+### `Page lazy loading`
 
 隨著 Vue 的專案越來越多組件，一次載入全部的組件會造成載入變慢．
 
@@ -821,7 +926,7 @@ const router = createRouter({
 });
 ```
 
-### Catch 404
+### `Catch 404`
 
 [catch404](https://router.vuejs.org/guide/essentials/dynamic-matching.html#catch-all-404-not-found-route)
 
@@ -832,7 +937,7 @@ const router = createRouter({
   },
 ```
 
-### Loading page
+### `Loading page`
 
 ```javascript
 function loginFn() {
@@ -849,7 +954,7 @@ function loginFn() {
 
 ![](./gif/vue.loading.gif)
 
-## State management
+## `State management`
 
 - [Vuex](https://vuex.vuejs.org/)
 - [Pinia](https://pinia.vuejs.org/introduction.html)
@@ -866,7 +971,7 @@ Pinia 有以下優勢
 npm install pinia
 ```
 
-### mount to main.js
+### `mount to main.js`
 
 ```javascript
 import { createPinia } from 'pinia';
@@ -874,7 +979,7 @@ import { createPinia } from 'pinia';
 createApp(App).use(createPinia()).use(router).mount('#app');
 ```
 
-### store
+### `store`
 
 ```javascript
 import { defineStore } from 'pinia';
@@ -894,7 +999,7 @@ export const useStore = defineStore('theme', {
 });
 ```
 
-### setup
+### `setup`
 
 ```javascript
 import { storeToRefs } from 'pinia';
@@ -921,7 +1026,7 @@ const { darkMode } = store;
 </template>
 ```
 
-### async
+### `async`
 
 ```javascript
 import { mande } from 'mande';
@@ -949,12 +1054,12 @@ export const useUsers = defineStore('users', {
 });
 ```
 
-## Packages
+## `Packages`
 
 - [Bootstrap](#Boostrap)
 - [Font Awesome](#Font-Awesome)
 
-### Bootstrap
+### `Bootstrap`
 
 ```javascript
 npm install bootstrap
@@ -968,7 +1073,7 @@ import 'bootstrap';
 
 ---
 
-### Font-Awesome
+### `Font-Awesome`
 
 [fontawesome github](https://github.com/FortAwesome/vue-fontawesome)
 
@@ -1011,11 +1116,11 @@ createApp(App)
 	.mount('#app');
 ```
 
-## Configuration
+## `Configuration`
 
 - [source map](#sourc-map)
 
-### source map
+### `source map`
 
 ```javascript
 productionSourceMap: false,
@@ -1032,7 +1137,7 @@ module.exports = defineConfig({
 
 ---
 
-## TDD
+## `TDD`
 
 TDD 是(Test-Driven-Develope)的簡稱，不論是重構前先測試是否結果一樣，或是在開發的時候先測試再進行開發，這都是維持團隊程式碼避免二次攥寫的利器．
 
