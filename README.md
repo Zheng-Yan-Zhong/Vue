@@ -364,7 +364,7 @@ export default {
 
 在 Vue3 我們主要透過 setup()當作進入口
 
-```html
+```javascript
 <script>
   import { ref } from 'vue';
   export default {
@@ -783,7 +783,146 @@ setup() {
 
 ---
 
-## Slot
+## `Slot`
+
+[Vue slot docs](https://vuejs.org/guide/components/slots.html#slot-content-and-outlet)
+
+Slot 可以讓我們自由定義 NavBar 中的資料,達到可以隨意包裝元件
+
+- [slot template](#slot-template)
+- [dynamic slot name](#dynamic-slot-name)
+- [scope slot](#scope-slot)
+
+![](./image/vue.slot.png)
+
+> https://vuejs.org/guide/components/slots.html#slot-content-and-outlet
+
+```html
+//NavBar.vue
+<nav>
+  <slot></slot>
+</nav>
+```
+
+```html
+//App.vue <NavBar><p>Hello world</p></NavBar>
+```
+
+---
+
+### `slot template`
+
+- v-slot:header
+- `shorthand` : `#header`
+
+```html
+//App.vue
+<NavBar>
+  <template v-slot:header>
+    <p>I'm Header</p>
+  </template>
+  <template v-slot:footer>
+    <p>I'm footer</p>
+  </template>
+</NavBar>
+```
+
+```html
+//NavBar.vue
+<template>
+  <nav>
+    <slot name="header"></slot>
+    <p>------</p>
+    <slot name="footer"></slot>
+  </nav>
+</template>
+```
+
+![](./image/vue.slot.template.png)
+
+當然我們也可以使用 shorthand `#`
+
+```html
+//App.vue
+<NavBar>
+  <template #header>
+    <p>I'm Header</p>
+  </template>
+  <template #footer>
+    <p>I'm footer</p>
+  </template>
+</NavBar>
+```
+
+---
+
+### `dynamic slot name`
+
+```javascript
+  data() {
+    return {
+      dynamicSlot: 'header',
+    };
+  },
+```
+
+```html
+//App.vue
+<NavBar>
+  <template #[dynamicSlot]>
+    <p>I'm Header</p>
+  </template>
+  <template #footer>
+    <p>I'm footer</p>
+  </template>
+</NavBar>
+```
+
+或是不使用縮寫也可以
+
+```html
+//App.vue
+<NavBar>
+  <template v-slot:[dynamicSlot]>
+    <p>I'm Header</p>
+  </template>
+  <template #footer>
+    <p>I'm footer</p>
+  </template>
+</NavBar>
+```
+
+---
+
+### `scope slot`
+
+當然我們也可以從 slot 中傳遞資料到父組件
+
+```html
+//App.vue
+<template>
+  <div id="app">
+    <nav>
+      <NavBar v-slot="slotProps">
+        <p>{{ slotProps.text }}</p>
+        <p>{{ slotProps.count }}</p>
+      </NavBar>
+    </nav>
+    <router-view />
+  </div>
+</template>
+```
+
+```html
+//NavBar.vue
+<template>
+  <nav>
+    <slot text="Hello world" count="101"></slot>
+  </nav>
+</template>
+```
+
+![](./image/vue.scope.slot.png)
 
 ---
 
