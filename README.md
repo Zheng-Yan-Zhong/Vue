@@ -8,18 +8,18 @@ Vue 跟 React 等相關框架都是資料決定畫面,有別於 MVC(Model View C
 
 ## `Table of Contents`
 
-- [CLI (command line interface)](#CLI)
-- [Events](#Events)
-- [Option API (Vue2)](#Option-API)
-- [Composition API (Vue3)](#Composition-API)
-- [Lifecycle](#Lifecycle)
+- [CLI (command line interface)](#cli)
+- [Events](#events)
+- [Option API (Vue2)](#option-api)
+- [Composition API (Vue3)](#composition-api)
+- [Lifecycle](#lifecycle)
 - [Slot](#slot)
-- [Transition](#Transition)
-- [Router](#Router)
-- [State management](#State-management)
-- [Packages](#Packages)
-- [Configuration](#Configuration)
-- [TDD](#TDD)
+- [Transition](#transition)
+- [Router](#router)
+- [State management](#state-management)
+- [Packages](#packages)
+- [Configuration](#configuration)
+- [TDD](#tdd)
 
 ---
 
@@ -87,14 +87,14 @@ const clickFn = (event) => {
 
 ## `Option API`
 
-- [Setting]()
-- [Data]()
-- [Methods]()
-- [Props]()
-- [Component]()
-- [Global component]()
-- [Watch]()
-- [Mixin]()
+- [Setting](#se)
+- [Data](#data)
+- [Methods](#methods)
+- [Prop](#prop)
+- [Component](#component)
+- [Global component](#global-component)
+- [Watch](#option-watch)
+- [Mixin](#mixin)
 
 ## `Setting`
 
@@ -247,7 +247,7 @@ export default {
 
 ---
 
-## `Watch`
+## `Option Watch`
 
 [Vue2 watch docs](https://vuejs.org/guide/essentials/watchers.html)
 
@@ -296,29 +296,23 @@ export default {
 由於 watch 是 shallow watch,所以物件中的資料更動也無法察覺,透過 deep 我們可以辨識物件中的屬性(也就是觀察記憶體位置)
 
 ```javascript
-<script>
 export default {
-// watch: {
-// 	value: function () {
-// 		console.log(this.value);
-// 	},
-watch: {
-	value: {
-		handler() {
-			console.log(this.value.date);
-		},
-		deep: true,
-	},
-},
-data() {
-	return {
-		value: {
-			date: '2022',
-		},
-	};
-},
+  watch: {
+    value: {
+      handler() {
+        console.log(this.value.date);
+      },
+      deep: true,
+    },
+  },
+  data() {
+    return {
+      value: {
+        date: '2022',
+      },
+    };
+  },
 };
-</script>
 ```
 
 ---
@@ -328,30 +322,24 @@ data() {
 無論如何立即回調
 
 ```javascript
-<script>
 export default {
-// watch: {
-// 	value: function () {
-// 		console.log(this.value);
-// 	},
-watch: {
-	value: {
-		handler() {
-			console.log(this.value.date);
-		},
-		deep: true,
-		immediate: true
-	},
-},
-data() {
-	return {
-		value: {
-			date: '2022',
-		},
-	};
-},
+  watch: {
+    value: {
+      handler() {
+        console.log(this.value.date);
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+  data() {
+    return {
+      value: {
+        date: '2022',
+      },
+    };
+  },
 };
-</script>
 ```
 
 ---
@@ -363,17 +351,16 @@ data() {
 ## `Composition API`
 
 - [setup()](#setup)
-- [nextTick(()](#NextTick)
-- [Ref](#Ref)
-- [Reactive](#Reactive)
-- [Readonly](#Readonly)
-- [Props](#DefineProps)
-- [Directives](#Directives)
-- [Readonly()](#Readonly)
-- [Computed()](#Computed)
-- [Watch()](#Watch)
-- [WatchEffect()](#WatchEffect)
-- [Class bind](#Class-bind)
+- [nextTick(()](#nexttick)
+- [Ref](#ref)
+- [Reactive](#reactive)
+- [Props](#defineprops)
+- [Directives](#directives)
+- [Readonly()](#readonly)
+- [Computed()](#computed)
+- [Watch()](#watch)
+- [WatchEffect()](#watcheffect)
+- [Class bind](#class-binding)
 
 在 Vue3 我們主要透過 setup()當作進入口
 
@@ -393,7 +380,7 @@ data() {
       console.log(this.count); // 0
     },
   };
-</script>
+</>
 
 <template>
   <button @click="count++">{{ count }}</button>
@@ -537,7 +524,6 @@ console.log('hello');
 - [v-for](#v-for)
 - [v-on](#v-on)
 - [v-model](#v-model)
-- [v-memo](#v-memo)
 
 ### `v-bind`
 
@@ -839,11 +825,11 @@ setup() {
 
 ## `Router`
 
-- [Setting](#Setting)
-- [Nested routes](#Nested-route)
-- [Page lazy load](#Page-lazy-loading)
-- [Catch 404](#Catch-404)
-- [Loading-page](#Loading-page)
+- [Setting](#setting)
+- [Nested routes](#nested-routes)
+- [Page lazy load](#page-lazy-loading)
+- [Catch 404](#catch-404)
+- [Loading-page](#loading-page)
 
 ### `Setting`
 
@@ -1118,7 +1104,7 @@ createApp(App)
 
 ## `Configuration`
 
-- [source map](#sourc-map)
+- [source map](#source-map)
 
 ### `source map`
 
