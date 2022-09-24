@@ -1,4 +1,4 @@
-# Vue-note
+# Vue
 
 Vue 跟 React 等相關框架都是資料決定畫面,有別於 MVC(Model View Controller ),Vue 則是 MVVM(Model View ViewModel)
 
@@ -8,11 +8,9 @@ Vue 跟 React 等相關框架都是資料決定畫面,有別於 MVC(Model View C
 
 ## `Table of Contents`
 
-- [CLI (command line interface)](#cli)
-- [Events](#events)
+- [安裝專案]
 - [Option API (Vue2)](#option-api)
 - [Composition API (Vue3)](#composition-api)
-- [Lifecycle](#lifecycle)
 - [Slot](#slot)
 - [Transition](#transition)
 - [Router](#router)
@@ -23,26 +21,28 @@ Vue 跟 React 等相關框架都是資料決定畫面,有別於 MVC(Model View C
 
 ---
 
-## `CLI`
+## `安裝專案`
 
-由於 Vue 的主要作者開始推崇從 Vue-cli 轉移到 Vite,想當然我們使用的用戶也要與時俱進的學習.
-
-- 開發模式不用打包全部依賴,而 Webpack 則是需要一次打包
-- Vite 則是使用緩存的熱刷新,而 Webpack 則是整個重刷
-
-[Vite](https://vitejs.dev/guide/#index-html-and-project-root)
-
-```javascript
-npm create vite@latest <fileName> --template-vue
+```sh
+npm init vue@latest
 ```
 
-[Vue cli](https://cli.vuejs.org/)
+```sh
+✔ Add TypeScript? … No / Yes
+✔ Add JSX Support? … No / Yes
+✔ Add Vue Router for Single Page Application development? … No / Yes
+✔ Add Pinia for state management? … No / Yes
+✔ Add Vitest for Unit Testing? … No / Yes
+✔ Add Cypress for both Unit and End-to-End testing? … No / Yes
+✔ Add ESLint for code quality? … No / Yes
 
-- 相較於 Vite,Vue cli 經過多個版本的驗證,保持良好得套件相依性
+Scaffolding project in /Users/zhengyanzhong/github/vue-prac...
 
-```javascript
-npm install -g @vue/cli
-vue create . //創建在當前目錄下
+Done. Now run:
+
+  cd <fileName>
+  npm install
+  npm run dev
 ```
 
 ---
@@ -100,10 +100,10 @@ const clickFn = (event) => {
 
 ```javascript
 //main.js
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
 Vue.config.productionTip = false;
 
@@ -111,7 +111,7 @@ new Vue({
   router,
   store,
   render: (vue) => vue(App),
-}).$mount('#app');
+}).$mount("#app");
 ```
 
 ---
@@ -151,9 +151,9 @@ data() {
 在 methods 物件中定義使用的 function
 
 ```javascript
-import HelloWorld from '../components/HelloWorld.vue';
+import HelloWorld from "../components/HelloWorld.vue";
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {
     Hello: HelloWorld,
   },
@@ -192,15 +192,15 @@ export default {
 欲使用組件時,需先引入組件,並且使用 components 註冊
 
 ```javascript
-import HelloWorld from '@/components/HelloWorld.vue';
+import HelloWorld from "@/components/HelloWorld.vue";
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {
     HelloWorld,
   },
   data() {
     return {
-      msg: 'hello',
+      msg: "hello",
     };
   },
 };
@@ -220,7 +220,7 @@ export default {
 
 ```javascript
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {
     Hello: HelloWorld,
   },
@@ -266,7 +266,7 @@ export default {
   },
   data() {
     return {
-      value: '',
+      value: "",
     };
   },
 };
@@ -283,7 +283,7 @@ export default {
   },
   data() {
     return {
-      value: '',
+      value: "",
     };
   },
 };
@@ -308,7 +308,7 @@ export default {
   data() {
     return {
       value: {
-        date: '2022',
+        date: "2022",
       },
     };
   },
@@ -335,7 +335,7 @@ export default {
   data() {
     return {
       value: {
-        date: '2022',
+        date: "2022",
       },
     };
   },
@@ -362,6 +362,10 @@ export default {
 - [WatchEffect()](#watcheffect)
 - [Class bind](#class-binding)
 
+---
+
+## `setup`
+
 在 Vue3 我們主要透過 setup()當作進入口
 
 ```javascript
@@ -369,8 +373,8 @@ export default {
   import { ref } from 'vue';
   export default {
     setup() {
+      //進行邏輯操作
       const count = ref(0);
-
       return {
         count,
       };
@@ -389,30 +393,73 @@ export default {
 
 > Note that refs returned from setup are automatically shallow unwrapped when accessed in the template so you do not need to use .value when accessing them. They are also unwrapped in the same way when accessed on this.
 
-在官方這一段文字中告訴我們,setup( )會幫助我們展開 ref 的屬性
+> 在官方這一段文字中告訴我們，當 template 引用`setup`中的資料時，會自動展開 ref 的`value`
 
 ---
 
-## `setup`
+### `Script setup`
 
-[script setup](https://vuejs.org/api/sfc-script-setup.html)
-
-- defineProps
-- defineEmits
-
-然而在 script tag 中加入 setup 可以簡短語法
+在 script tag 中加入 setup 可以簡短語法
 
 ```html
 <script setup>
-  import { ref, defineProps } from 'vue';
+  import { ref, defineProps } from "vue";
   defineProps({
     name: String,
   });
   const age = ref(23);
   const sayHi = () => {
-    console.log('hello');
+    console.log("hello");
   };
 </script>
+```
+
+---
+
+## `Props`
+
+```html
+//App.vue
+<template>
+  <div>
+    <!-- 在該組件定義名稱，並且傳值 -->
+    <Children name="root" />
+    {{ count }}
+  </div>
+</template>
+
+<script setup>
+  import { ref, defineComponent } from "vue";
+  import Children from "@/components/ChildrenView.vue";
+  defineComponent({
+    Children,
+  });
+  const count = ref(100);
+</script>
+```
+
+```html
+//Children.vue
+<template>
+  <!-- root -->
+  <div>{{ name }}</div>
+</template>
+<script setup>
+  import { defineProps } from "vue";
+  defineProps({
+    name: String,
+    object: Object,
+  });
+</script>
+<style lang=""></style>
+```
+
+### 參數 props
+
+在屬性前加上`:`可以傳遞變數
+
+```html
+<Children name="roots" :object="object" />
 ```
 
 ---
@@ -426,7 +473,7 @@ const data = ref(0);
 const clickFn = () => {
   data.value++;
   nextTick(() => {
-    console.log('hello');
+    console.log("hello");
   });
 };
 ```
@@ -447,7 +494,7 @@ const clickFn = () => {
 
 ```javascript
 const textFn = () => {
-  text.value = 'Goodbye';
+  text.value = "Goodbye";
 };
 ```
 
@@ -507,7 +554,7 @@ console.log('hello');
 </template>
 
 <script setup>
-  import { defineProps } from 'vue';
+  import { defineProps } from "vue";
   defineProps({
     name: String,
   });
@@ -571,9 +618,9 @@ or
 
 ```html
 <script setup>
-  import { ref, reactive } from 'vue';
-  import Child from './Child.vue';
-  const array = reactive(['JS', 'CSS', 'HTML']);
+  import { ref, reactive } from "vue";
+  import Child from "./Child.vue";
+  const array = reactive(["JS", "CSS", "HTML"]);
   const bool = ref(true);
 </script>
 
@@ -611,9 +658,9 @@ or
 
 ```html
 <script setup>
-  import { ref, reactive } from 'vue';
-  import Child from './Child.vue';
-  const array = reactive(['JS', 'CSS', 'HTML']);
+  import { ref, reactive } from "vue";
+  import Child from "./Child.vue";
+  const array = reactive(["JS", "CSS", "HTML"]);
 </script>
 
 <template>
@@ -974,21 +1021,21 @@ Slot 可以讓我們自由定義 NavBar 中的資料,達到可以隨意包裝元
 
 ```javascript
 //router/index.js
-import { createRouter, createWebHashHistory } from 'vue-router';
-import Homepage from '../views/Homepage.vue';
-import Login from '../views/Login.vue';
-import Register from '../components/Register.vue';
+import { createRouter, createWebHashHistory } from "vue-router";
+import Homepage from "../views/Homepage.vue";
+import Login from "../views/Login.vue";
+import Register from "../components/Register.vue";
 const routes = [
   {
-    path: '/',
+    path: "/",
     component: Homepage,
   },
   {
-    path: '/login',
+    path: "/login",
     component: Login,
   },
   {
-    path: '/register',
+    path: "/register",
     component: Register,
   },
 ];
@@ -1002,10 +1049,10 @@ export default router;
 
 ```javascript
 //main.js
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-createApp(App).use(store).use(router).mount('#app');
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+createApp(App).use(store).use(router).mount("#app");
 ```
 
 ### `Nested routes`
@@ -1013,19 +1060,19 @@ createApp(App).use(store).use(router).mount('#app');
 ```javascript
 const routes = [
   {
-    path: '/user/:id',
+    path: "/user/:id",
     component: User,
     children: [
       {
         // UserProfile will be rendered inside User's <router-view>
         // when /user/:id/profile is matched
-        path: 'profile',
+        path: "profile",
         component: UserProfile,
       },
       {
         // UserPosts will be rendered inside User's <router-view>
         // when /user/:id/posts is matched
-        path: 'posts',
+        path: "posts",
         component: UserPosts,
       },
     ],
@@ -1043,11 +1090,11 @@ const routes = [
 // replace
 // import UserDetails from './views/UserDetails'
 // with
-const UserDetails = () => import('./views/UserDetails');
+const UserDetails = () => import("./views/UserDetails");
 
 const router = createRouter({
   // ...
-  routes: [{ path: '/users/:id', component: UserDetails }],
+  routes: [{ path: "/users/:id", component: UserDetails }],
 });
 ```
 
@@ -1067,12 +1114,12 @@ const router = createRouter({
 ```javascript
 function loginFn() {
   //先切入loading path
-  router.push('/loading');
+  router.push("/loading");
   //非同步完成後切入首頁
-  fetch('https://e-shop-tw.herokuapp.com/')
+  fetch("https://e-shop-tw.herokuapp.com/")
     .then((res) => res.json())
     .then((data) => console.log(data))
-    .then(() => router.push('/'))
+    .then(() => router.push("/"))
     .catch((err) => console.log(err));
 }
 ```
@@ -1099,26 +1146,26 @@ npm install pinia
 ### `mount to main.js`
 
 ```javascript
-import { createPinia } from 'pinia';
+import { createPinia } from "pinia";
 
-createApp(App).use(createPinia()).use(router).mount('#app');
+createApp(App).use(createPinia()).use(router).mount("#app");
 ```
 
 ### `store`
 
 ```javascript
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useStore = defineStore('theme', {
+export const useStore = defineStore("theme", {
   state: () => {
     return {
-      bgc: 'white',
-      color: 'grey',
+      bgc: "white",
+      color: "grey",
     };
   },
   actions: {
     darkMode() {
-      (this.bgc = 'black'), (this.color = 'white');
+      (this.bgc = "black"), (this.color = "white");
     },
   },
 });
@@ -1127,8 +1174,8 @@ export const useStore = defineStore('theme', {
 ### `setup`
 
 ```javascript
-import { storeToRefs } from 'pinia';
-import { useStore } from './store/theme';
+import { storeToRefs } from "pinia";
+import { useStore } from "./store/theme";
 
 const store = useStore();
 //而我們不能直接從store解構state
@@ -1154,11 +1201,11 @@ const { darkMode } = store;
 ### `async`
 
 ```javascript
-import { mande } from 'mande';
+import { mande } from "mande";
 
-const api = mande('/api/users');
+const api = mande("/api/users");
 
-export const useUsers = defineStore('users', {
+export const useUsers = defineStore("users", {
   state: () => ({
     userData: null,
     // ...
@@ -1192,8 +1239,8 @@ npm install bootstrap
 
 ```javascript
 //main.js
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
 ```
 
 ---
@@ -1232,13 +1279,13 @@ Don't forget to bind the property with ":" (we forget all the time!)
 
 ```javascript
 //main.js
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faUserSecret);
 createApp(App)
-  .component('font-awesome-icon', FontAwesomeIcon)
+  .component("font-awesome-icon", FontAwesomeIcon)
   .use(router)
-  .mount('#app');
+  .mount("#app");
 ```
 
 ## `Configuration`
@@ -1253,7 +1300,7 @@ productionSourceMap: false,
 
 ```javascript
 //vue.config.js
-const { defineConfig } = require('@vue/cli-service');
+const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: true,
   productionSourceMap: false,
